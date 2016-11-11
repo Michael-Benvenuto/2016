@@ -69,11 +69,11 @@ public class Aim {
 			speed = sign * stop_voltage;
 		}
 		if(tick <= 8){
-			if(x > 2){
-				speed -= 0.4f;
-			}
 			if(x > 10 && tick > 4){
 				speed += 0.5f;	
+			}
+			else if(x > 2){
+				speed -= 0.4f;
 			}
 			if(tick > 4) speed *= -0.1 * (9 - tick);
 		}
