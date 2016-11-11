@@ -138,8 +138,8 @@ public class DriveHoldPosition extends CommandGroup {
      * 
      * @return double array {left_speed, right_speed}*/
     private double[] arcade(double x, double y){
-    	double leftMotorSpeed = 0.00;
-    	double rightMotorSpeed = 0.00;
+    	double leftMotorSpeed;
+    	double rightMotorSpeed;
     	
     	// arcade drive math
 	    /*
@@ -155,12 +155,10 @@ public class DriveHoldPosition extends CommandGroup {
 			x = -(x * x);
 		}*/
 	    
-	    	double tx = x, ty = y;
-	    
-	    	tx *= x;
-	    	ty *= y;
-	    	if(x < 0) tx = -tx;
-	    	if(y < 0) ty = -ty;
+	    	x *= (x * x);
+	    	y *= (y * y);
+	    	if(x < 0) x = -t;
+	    	if(y < 0) y = -t;
 	    
 	    	leftMotorSpeed = ty - tx;
 	    	rightMotorSpeed = Math.max(tx, ty);
