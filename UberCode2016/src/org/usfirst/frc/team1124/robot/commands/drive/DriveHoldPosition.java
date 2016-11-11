@@ -156,8 +156,8 @@ public class DriveHoldPosition extends CommandGroup {
 		}*/
 	    
 	    	//Definately not final, working on a revision.
-	    	x *= (x * x);
-	    	y *= (y * y);
+	    	x *= x;
+	    	y *= y;
 	    	if(x < 0) x = -x;
 	    	if(y < 0) y = -y;
 	    
