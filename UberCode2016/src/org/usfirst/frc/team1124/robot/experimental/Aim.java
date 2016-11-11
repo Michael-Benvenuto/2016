@@ -59,54 +59,24 @@ public class Aim {
 		sign = Math.signum(x);
 		x = Math.abs(x);
 		
-		if(tick == 0){
-			if(x > 80){
-				speed = 0.8 * sign;
-			}else if(x > 10){
-				speed = 0.00000202852 * Math.pow((sign * x), 3) + -0.000314 * Math.pow((sign * x), 2) + 0.0197 * (sign * x) + 0.195;
-			}else if(x > 2){
-				speed = -0.0007867 * Math.pow((sign * x), 4) + 0.020648 * Math.pow((sign * x), 3) + -0.1848 * Math.pow((sign * x), 2) + 0.6149 * (sign * x) + -0.05; 
-			}else{
-				speed = sign * stop_voltage;
-			}
-		}else if(tick <= 4){
-			if(x > 80){
-				speed = 0.8 * sign;
-			}else if(x > 10){
-				speed = 0.00000202852 * Math.pow((sign * x), 3) + -0.000314 * Math.pow((sign * x), 2) + 0.0197 * (sign * x) + 0.195;
-			}else if(x > 2){
-				speed = -0.0007867 * Math.pow((sign * x), 4) + 0.020648 * Math.pow((sign * x), 3) + -0.1848 * Math.pow((sign * x), 2) + 0.6149 * (sign * x) + -0.05;
-			}else{
-				speed = sign * stop_voltage;
-			}
-
-			// decay transform
-			if(x > 2){
-				speed -= (0.4);
-			}
-		}else if(tick <= 8){
-			if(x > 80){
-				speed = 0.8 * sign;
-			}else if(x > 10){
-				speed = 0.00000202852 * Math.pow((sign * x), 3) + -0.000314 * Math.pow((sign * x), 2) + 0.0197 * (sign * x) + 0.195;
-			}else if(x > 2){
-				speed = -0.0007867 * Math.pow((sign * x), 4) + 0.020648 * Math.pow((sign * x), 3) + -0.1848 * Math.pow((sign * x), 2) + 0.6149 * (sign * x) + -0.05;
-			}else{
-				speed = sign * stop_voltage;
-			}
-			
-			// decay and reverse transform
-			if(x > 10){
-				speed += (0.05);
-				speed *= -0.1 * (9 - tick);
-			}else if(x > 2){
-				speed -= (0.4);
-				speed *= -0.1 * (9 - tick);
-			}
+		if(x > 80){
+			speed = 0.8 * sign;
+		}else if(x > 10){
+			speed = 0.00000202852 * Math.pow((sign * x), 3) + -0.000314 * Math.pow((sign * x), 2) + 0.0197 * (sign * x) + 0.195;
+		}else if(x > 2){
+			speed = -0.0007867 * Math.pow((sign * x), 4) + 0.020648 * Math.pow((sign * x), 3) + -0.1848 * Math.pow((sign * x), 2) + 0.6149 * (sign * x) + -0.05; 
 		}else{
 			speed = sign * stop_voltage;
 		}
-		
+		if(tick <= 8){
+			if(x > 2){
+				speed -= 0.4f;
+			}
+			if(x > 10 && tick > 4){
+				speed += 0.5f;	
+			}
+			if(tick > 4) speed *= -0.1 * (9 - tick);
+		}
 		return speed;
 	}
 }
