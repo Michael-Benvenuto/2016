@@ -53,11 +53,8 @@ public class Aim {
 	}
 	
 	private double calculate(double x, int tick){
-		double speed = 0;
-		double sign = 0;
-		
-		sign = Math.signum(x);
-		x = Math.abs(x);
+		double sign = Math.signum(x);
+		double x = Math.abs(x);
 		
 		if(x > 80){
 			speed = 0.8 * sign;
