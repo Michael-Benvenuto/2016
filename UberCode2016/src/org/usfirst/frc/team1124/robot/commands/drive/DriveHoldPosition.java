@@ -141,6 +141,9 @@ public class DriveHoldPosition extends CommandGroup {
     	double leftMotorSpeed;
     	double rightMotorSpeed;
     	
+	    double tx = (x * x);
+	    double ty = (y * y);
+	    
     	// arcade drive math
 	    /*
 		if(y >= 0.0){
@@ -156,34 +159,30 @@ public class DriveHoldPosition extends CommandGroup {
 		}*/
 	    
 	    	//Definately not final, working on a revision.
-	    	x *= x;
-	    	y *= y;
-	    	if(x < 0) x = -x;
-	    	if(y < 0) y = -y;
+	    	if(x < 0) tx = -tx;
+	    	if(y < 0) ty = -ty;
 	    
-	    	leftMotorSpeed = Math.max(x, y);
-	    	rightMotorSpeed = Math.max(x, y);
-	    	
-	    	
-	    	/*Rewriting this...
+	    	leftMotorSpeed = Math.max(tx, ty);
+	    	rightMotorSpeed = Math.max(tx, ty);
+	    
+	    	/*Rewriting
 		if(y > 0){
 			if(x > 0){
-				leftMotorSpeed = y - x;
-				rightMotorSpeed = Math.max(y, x);
+				leftMotorSpeed = ty - tx;
+				rightMotorSpeed = Math.max(ty, tx);
 			}else{
-				leftMotorSpeed = Math.max(y, -x);
-				rightMotorSpeed = y + x;
+				leftMotorSpeed = Math.max(ty, tx);
+				rightMotorSpeed = ty + tx;
 			}
 		}else{
 			if(x > 0){
-				leftMotorSpeed = -Math.max(-y, x);
-				rightMotorSpeed = y + x;
+				leftMotorSpeed = -Math.max(ty, tx);
+				rightMotorSpeed = ty + tx;
 			}else{
-				leftMotorSpeed = y - x;
-				rightMotorSpeed = -Math.max(-y, -x);
+				leftMotorSpeed = ty - tx;
+				rightMotorSpeed = -Math.max(ty, tx);
 			}
-		}
-		*/
+		}*/
 		
 		double[] speeds = {leftMotorSpeed, rightMotorSpeed};
 		
