@@ -160,8 +160,8 @@ public class DriveHoldPosition extends CommandGroup {
 	    	if(x < 0) x = -t;
 	    	if(y < 0) y = -t;
 	    
-	    	leftMotorSpeed = ty - tx;
-	    	rightMotorSpeed = Math.max(tx, ty);
+	    	leftMotorSpeed = Math.max(x, y);
+	    	rightMotorSpeed = Math.max(x, y);
 	    	
 	    	
 	    	/*Rewriting this...
